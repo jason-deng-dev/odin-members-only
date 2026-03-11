@@ -1,26 +1,34 @@
 const express = require('express');
+require('dotenv').config();
+
 const app = express();
 const path = require('node:path');
-const indexRouter = require('./routes/indexRouter');
-
-// setup for static assets
 const assetsPath = path.join(__dirname, 'public');
 app.use(express.static(assetsPath));
-// setup for EJS
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-// body parser for form POST
 app.use(express.urlencoded({ extended: true }));
 
+// routers
+const indexRouter = require('./routes/indexRouter');
+const authRouter = require('./routes/authRouter')
+
+// Authentication setup
+const session = require("express-session");
+app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: false }))
+const passport = require('./config/passport')
+app.use(passport.session());
+
+// routes
 app.use('/', indexRouter);
+app.use('/auth', authRouter)
 
 app.use((err, req, res, next) => {
 	console.error(err);
 	res.status(500).send('ERROR');
 });
 
-const PORT = 3000;
-app.listen(PORT, (error) => {
+app.listen(process.env.PORT, (error) => {
 	if (error) {
 		throw error;
 	}

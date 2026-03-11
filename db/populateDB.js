@@ -3,6 +3,16 @@ require('dotenv').config();
 const { Client } = require('pg');
 
 const SQL = `
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   username VARCHAR ( 255 ),
+   password VARCHAR ( 255 )
+);
+`
+
+const referenceSQL = `
 DROP TABLE IF EXISTS game_genre;
 DROP TABLE IF EXISTS games;
 DROP TABLE IF EXISTS genres;
