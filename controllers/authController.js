@@ -27,3 +27,19 @@ exports.signUpPost = async (req, res, next) => {
 		next(err);
 	}
 };
+
+exports.loginGet = async (req, res, next) => {
+	try {
+		res.render('auth/log-in-form');
+	} catch (err) {
+		next(err);
+	}
+};
+
+exports.loginPost = async (req, res, next) => {
+	try {
+		res.render('auth/log-in-form');
+	} catch (err) {
+		next(err);
+	}
+};
