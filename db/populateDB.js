@@ -4,13 +4,27 @@ const { Client } = require('pg');
 
 const SQL = `
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS messages;
 
 CREATE TABLE users (
-   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-   username VARCHAR ( 255 ),
-   password VARCHAR ( 255 )
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  firstName VARCHAR ( 255 ),
+  lastName VARCHAR ( 255 ),
+  username VARCHAR ( 255 ),
+  password VARCHAR ( 255 ),
+  membership_status BOOLEAN DEFAULT false,
+  admin BOOLEAN DEFAULT false
 );
-`
+
+CREATE TABLE messages (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  title VARCHAR ( 255 ),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  content TEXT,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+`;
 
 const referenceSQL = `
 DROP TABLE IF EXISTS game_genre;
