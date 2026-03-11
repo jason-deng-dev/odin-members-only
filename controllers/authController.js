@@ -1,6 +1,8 @@
 const db = require('../db/queries');
 const passport = require('passport');
 const bcrypt = require("bcryptjs");
+const { body, validationResult, matchedData } = require("express-validator");
+
 
 exports.signUpGet = async (req, res, next) => {
 	try {
@@ -10,7 +12,29 @@ exports.signUpGet = async (req, res, next) => {
 	}
 };
 
-exports.signUpPost = async (req, res, next) => {
+
+const alphaErr = "must only contain letters.";
+const lengthErr = "must be between 1 and 10 characters.";
+
+const validateUser = [
+  body("firstName").trim()
+    .isAlpha().withMessage(`First name ${alphaErr}`)
+    .isLength({ min: 1, max: 10 }).withMessage(`First name ${lengthErr}`),
+  body("lastName").trim()
+    .isAlpha().withMessage(`Last name ${alphaErr}`)
+    .isLength({ min: 1, max: 10 }).withMessage(`Last name ${lengthErr}`),
+];
+
+
+
+exports.signUpPost = [validateUser, async (req, res, next) => {
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+      return res.status(400).render("auth/sign-up-form", {
+        title: "Create user",
+        errors: errors.array(),
+      });
+    }
 	try {
 		const firstName = req.body.firstName;
 		const lastName = req.body.lastName;
@@ -28,7 +52,7 @@ exports.signUpPost = async (req, res, next) => {
 	} catch (err) {
 		next(err);
 	}
-};
+}] 
 
 exports.loginGet = async (req, res, next) => {
 	try {
