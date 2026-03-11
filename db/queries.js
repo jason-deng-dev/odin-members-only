@@ -13,3 +13,13 @@ exports.addUser = async (
 		[firstName, lastName, username, password, isAdmin],
 	);
 };
+
+exports.getUserByUsername = async (username) => {
+    const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
+    return rows[0];
+}
+
+exports.getUsersById = async (id) => {
+    const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+    return rows[0];
+}

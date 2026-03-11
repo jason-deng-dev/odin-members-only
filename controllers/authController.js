@@ -1,4 +1,5 @@
 const db = require('../db/queries');
+const passport = require('passport');
 
 exports.signUpGet = async (req, res, next) => {
 	try {
@@ -36,10 +37,7 @@ exports.loginGet = async (req, res, next) => {
 	}
 };
 
-exports.loginPost = async (req, res, next) => {
-	try {
-		res.render('auth/log-in-form');
-	} catch (err) {
-		next(err);
-	}
-};
+exports.loginPost = passport.authenticate('local', {
+  successRedirect: '/sucess',
+  failureRedirect: '/failure',
+});
