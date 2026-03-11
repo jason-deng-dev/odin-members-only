@@ -1,6 +1,6 @@
 <div>
     <% if (locals.currentUser) {%>
-    <h5>STATUS: MEMBER</h5>
+    <h5>Hello, <%= locals.currentUser.username %>!</h5>
   <% }%>
     <a href="/">Home</a>
     <a href="/auth/sign-up">Sign up</a>

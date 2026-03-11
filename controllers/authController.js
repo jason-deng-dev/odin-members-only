@@ -16,7 +16,7 @@ exports.signUpPost = async (req, res, next) => {
 		const username = req.body.username;
 		const password = req.body.password;
 		const isAdmin = req.body.isAdmin === 'true';
-		db.addUser(
+		await db.addUser(
 			firstName,
 			lastName,
 			username,
