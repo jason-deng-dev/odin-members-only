@@ -19,6 +19,7 @@ app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: 
 const passport = require('./config/passport')
 app.use(passport.session());
 
+
 // will have access to the currentUser variable in all of your views
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;

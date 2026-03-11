@@ -1,5 +1,6 @@
 const db = require('../db/queries');
 const passport = require('passport');
+const bcrypt = require("bcryptjs");
 
 exports.signUpGet = async (req, res, next) => {
 	try {
@@ -14,13 +15,13 @@ exports.signUpPost = async (req, res, next) => {
 		const firstName = req.body.firstName;
 		const lastName = req.body.lastName;
 		const username = req.body.username;
-		const password = req.body.password;
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
 		const isAdmin = req.body.isAdmin === 'true';
 		await db.addUser(
 			firstName,
 			lastName,
 			username,
-			password,
+			hashedPassword,
 			isAdmin,
 		);
 		res.redirect('/');
