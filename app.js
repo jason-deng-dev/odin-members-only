@@ -28,11 +28,12 @@ app.use((err, req, res, next) => {
 	res.status(500).send('ERROR');
 });
 
-app.listen(process.env.PORT, (error) => {
+const port = process.env.PORT
+app.listen(port, (error) => {
 	if (error) {
 		throw error;
 	}
 	console.log(
-		`My first Express app - listening on port ${PORT}!`,
+		`My first Express app - listening on port ${port}!`,
 	);
 });
