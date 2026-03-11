@@ -1,10 +1,10 @@
 require('dotenv').config();
-
 const { Client } = require('pg');
 
 const SQL = `
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -13,7 +13,7 @@ CREATE TABLE users (
   username VARCHAR ( 255 ),
   password VARCHAR ( 255 ),
   membership_status BOOLEAN DEFAULT false,
-  admin BOOLEAN DEFAULT false
+  isAdmin BOOLEAN DEFAULT false
 );
 
 CREATE TABLE messages (
@@ -68,8 +68,11 @@ INSERT INTO game_genre (game_id, genre_id) VALUES
 async function main() {
 	console.log('seeding...');
 	const client = new Client({
-		connectionString: process.env.EXTERNAL_DATABASE_URL,
-		ssl: { rejectUnauthorized: false },
+		host: 'localhost',
+		user: process.env.USER,
+		database: process.env.DATABASE,
+		password: process.env.PASSWORD,
+		port: 5432,
 	});
 	await client.connect();
 	await client.query(SQL);

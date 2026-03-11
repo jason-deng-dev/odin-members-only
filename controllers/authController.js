@@ -10,11 +10,19 @@ exports.signUpGet = async (req, res, next) => {
 
 exports.signUpPost = async (req, res, next) => {
 	try {
-        const username = req.body.username;
-        const password = req.body.password;
-		db.addUser(username, password)
+		const firstName = req.body.firstName;
+		const lastName = req.body.lastName;
+		const username = req.body.username;
+		const password = req.body.password;
+		const isAdmin = req.body.isAdmin === 'true';
+		db.addUser(
+			firstName,
+			lastName,
+			username,
+			password,
+			isAdmin,
+		);
 		res.redirect('/');
-
 	} catch (err) {
 		next(err);
 	}
