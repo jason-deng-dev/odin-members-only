@@ -30,7 +30,7 @@ CREATE TABLE messages (
 async function main() {
 	console.log('seeding...');
 	const client = new Client({
-		connectionString: process.env.EXTERNAL_DATABASE_URL,
+		connectionString: process.env.INTERNAL_DATABASE_URL,
 		ssl: { rejectUnauthorized: false },
 	});
 	await client.connect();
