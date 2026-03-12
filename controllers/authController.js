@@ -145,7 +145,7 @@ exports.joinClubPost = [
 			})
 		}
 		try {
-			db.userToMember(req.user.id)
+			await db.userToMember(req.user.id)
 			res.redirect('/')
 		} catch (err) {
 			next(err)
