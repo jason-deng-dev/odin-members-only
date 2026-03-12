@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.msgsContainer{
+    display: flex;
+    gap: 20px;
+}
+
+.msgContainer{
+    background-color: rgb(230, 230, 230);
+}
+
