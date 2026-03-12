@@ -1,19 +1,7 @@
-<div n>
-  <div class="statusDisplay">
-      <% if (locals.currentUser) {%>
-        <h5>Hello, <%= locals.currentUser.username %>!</h5>
+<div >
 
-        <% if (locals.currentUser.membership_status && !locals.currentUser.isadmin) {%>
-          <h5>Status: Member</h5>
-        <% }%>
-
-        <% if (locals.currentUser.isadmin) {%>
-          <h5>Status: Admin</h5>
-        <% }%>
-      <% }%>
-  </div>
-    
-    <a href="/">Home</a>
+    <div class="navContainer">
+      <a href="/">Home</a>
     <% if (!locals.currentUser) {%>
     <a href="/auth/sign-up">Sign up</a>
     <a href="/auth/log-in">Log in</a>
@@ -27,7 +15,21 @@
     <a href="/auth/log-out">Log out</a>
 
   <% }%>
+    </div>
+    
+  <div class="statusDisplay">
+      <% if (locals.currentUser) {%>
+        <h3>Hello, <%= locals.currentUser.username %>!</h3>
 
+        <% if (locals.currentUser.membership_status && !locals.currentUser.isadmin) {%>
+          <h3>Status: Member</h3>
+        <% }%>
+
+        <% if (locals.currentUser.isadmin) {%>
+          <h3>Status: Admin</h3>
+        <% }%>
+      <% }%>
+  </div>
   
     
 </div>

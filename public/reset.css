@@ -41,12 +41,32 @@ h1, h2, h3, h4, h5, h6 {
 /*
   10. Create a root stacking context
 */
+a {
+  font-size: larger;
+  font-weight: bolder;
+  text-decoration: none;
+  color: black;
+  transition: transform 0.1s;
+  display: inline-block;
+}
+
+a:hover{
+  transform: scale(1.05);
+}
+
 #root, #__next {
   isolation: isolate;
 }
 
 .statusDisplay{
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
 }
 
+.navContainer {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
