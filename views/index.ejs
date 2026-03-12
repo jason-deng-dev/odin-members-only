@@ -9,5 +9,11 @@
 <body>
     <%- include('partials/nav')%>
 <h1>HOME</h1>
+
+    <% messages.forEach((msg) => {%>
+        <% console.log(msg)  %>
+        <%- include('partials/message', msg)%>
+    <%}) %>
+
 </body>
 </html>

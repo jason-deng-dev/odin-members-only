@@ -1,0 +1,24 @@
+<div class="msgContainer">
+	<!-- if admin see delete button -->
+	<!-- if member see author name, and time added -->
+	<div>Message title: <%= title %></div>
+	<div>Message Content: <%= content %></div>
+
+    
+    <% if (locals.currentUser && locals.currentUser.membership_status || locals.currentUser.isadmin) {%>
+        <div>By: <%= first_name %> <%= last_name %></div>
+        <div>Created on: <%= created_at %></div>
+    <%} %>
+
+
+    <% if (locals.currentUser && locals.currentUser.isadmin) {%>
+        <form action="">
+        <button>Delete</button>
+    </form>
+
+    <%} %>
+
+
+	
+
+</div>

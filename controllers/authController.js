@@ -22,7 +22,7 @@ const lengthErr = 'must be between 1 and 10 characters.';
 const emptyErr = 'is required.';
 
 const validateUser = [
-	body('firstName')
+	body('first_name')
 		.trim()
 		.notEmpty()
 		.withMessage(`Last name ${emptyErr}`)
@@ -30,7 +30,7 @@ const validateUser = [
 		.withMessage(`First name ${alphaErr}`)
 		.isLength({ max: 10 })
 		.withMessage(`First name ${lengthErr}`),
-	body('lastName')
+	body('last_name')
 		.trim()
 		.notEmpty()
 		.withMessage(`Last name ${emptyErr}`)
@@ -69,8 +69,8 @@ exports.signUpPost = [
 			});
 		}
 		try {
-			const firstName = req.body.firstName;
-			const lastName = req.body.lastName;
+			const first_name = req.body.first_name;
+			const last_name = req.body.last_name;
 			const username = req.body.username;
 			const hashedPassword = await bcrypt.hash(
 				req.body.password,
@@ -78,8 +78,8 @@ exports.signUpPost = [
 			);
 			const isAdmin = req.body.isAdmin === 'true';
 			await db.addUser(
-				firstName,
-				lastName,
+				first_name,
+				last_name,
 				username,
 				hashedPassword,
 				isAdmin,

@@ -1,5 +1,5 @@
 users
-id/firstName/lastName/username/password/status
+id/first_name/last_name/username/password/status
 
 messages
 id/title/timestamp/content

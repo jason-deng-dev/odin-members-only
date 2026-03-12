@@ -1,16 +1,16 @@
 const pool = require('./pool');
 
 exports.addUser = async (
-	firstName,
-	lastName,
+	first_name,
+	last_name,
 	username,
 	password,
 	isAdmin,
 ) => {
 	await pool.query(
-		`INSERT INTO users (firstName, lastName, username, password, isAdmin) 
+		`INSERT INTO users (first_name, last_name, username, password, isAdmin) 
         VALUES ($1, $2, $3, $4, $5)`,
-		[firstName, lastName, username, password, isAdmin],
+		[first_name, last_name, username, password, isAdmin],
 	);
 };
 
@@ -37,4 +37,13 @@ exports.addMsg = async (userId, msgTitle, msgContent) => {
 		INSERT INTO messages (title, content, user_id)
 		VALUES ($1, $2, $3)
 		`, [msgTitle, msgContent, userId])
+}
+
+exports.getAllMsg = async () => {
+	const {rows} = await pool.query(`
+		SELECT messages.* , users.first_name, users.last_name
+		FROM messages
+		LEFT JOIN users ON users.id = messages.user_id
+		`)
+	return rows
 }

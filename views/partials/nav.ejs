@@ -3,11 +3,11 @@
     <% if (locals.currentUser) {%>
       <h5>Hello, <%= locals.currentUser.username %>!</h5>
 
-      <% if (locals.currentUser.membership_status && !locals.currentUser.isadmin) {%>
+      <% if (locals.currentUser.membership_status && !locals.currentUser.isAdmin) {%>
         <h5>Status: Member</h5>
       <% }%>
 
-      <% if (locals.currentUser.isadmin) {%>
+      <% if (locals.currentUser.isAdmin) {%>
         <h5>Status: Admin</h5>
       <% }%>
   <% }%>
@@ -22,7 +22,7 @@
     <a href="/auth/log-in">Log in</a>
   <% }%>
   <% if (locals.currentUser) {%>
-    <% if (!locals.currentUser.isadmin && !locals.currentUser.membership_status) {%>
+    <% if (!locals.currentUser.isAdmin && !locals.currentUser.membership_status) {%>
         <a href="/auth/join-club">Join the club</a>
       <% }%>
     
