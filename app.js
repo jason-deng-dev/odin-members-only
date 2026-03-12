@@ -16,7 +16,7 @@ const messageRouter = require('./routes/messageRouter')
 
 // Authentication setup
 const session = require("express-session");
-app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: false }))
+app.use(session({ secret: 'secret-key', resave: false, saveUninitialized: false }))
 const passport = require('./config/passport')
 app.use(passport.session());
 
@@ -37,7 +37,7 @@ app.use((err, req, res, next) => {
 	res.status(500).send('ERROR');
 });
 
-const port = process.env.PORT
+const port = 3000;
 app.listen(port, (error) => {
 	if (error) {
 		throw error;
