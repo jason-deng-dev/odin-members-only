@@ -21,7 +21,7 @@ When logged in see:
 - create a message
 - all member messages (no author/date) on home page
 
-When member see logged in and see:
+When member see:
 - all member messages (author/date info) on home page
 
 When admin

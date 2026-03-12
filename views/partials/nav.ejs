@@ -1,9 +1,34 @@
 <div>
+  <div class="statusDisplay">
     <% if (locals.currentUser) {%>
-    <h5>Hello, <%= locals.currentUser.username %>!</h5>
+      <h5>Hello, <%= locals.currentUser.username %>!</h5>
+
+      <% if (locals.currentUser.membership_status && !locals.currentUser.isadmin) {%>
+        <h5>Status: Member</h5>
+      <% }%>
+
+      <% if (locals.currentUser.isadmin) {%>
+        <h5>Status: Admin</h5>
+      <% }%>
   <% }%>
+
+  </div>
+    
+
+
     <a href="/">Home</a>
+    <% if (!locals.currentUser) {%>
     <a href="/auth/sign-up">Sign up</a>
     <a href="/auth/log-in">Log in</a>
+  <% }%>
+  <% if (locals.currentUser) {%>
+    <a href="">Join the club</a>
+    <a href="">Create a message</a>
     <a href="/auth/log-out">Log out</a>
+  <% }%>
+  <% if (locals.currentUser.membership_status) {%>
+    <div>Member</div>
+    <% }%>
+  
+    
 </div>
