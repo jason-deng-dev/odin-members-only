@@ -44,6 +44,7 @@ exports.newMessagePost = [
 			const msgTitle = req.body.msgTitle;
 			const msgContent = req.body.msgContent;
 			const userId = req.user.id
+			db.addMsg(userId, msgTitle, msgContent)
 			res.redirect('/')
 		} catch (err) {
 			next(err);

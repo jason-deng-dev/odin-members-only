@@ -31,3 +31,10 @@ exports.userToMember = async(id) => {
 		WHERE id = $1
 		`, [id])
 }
+
+exports.addMsg = async (userId, msgTitle, msgContent) => {
+	await pool.query(`
+		INSERT INTO messages (title, content, user_id)
+		VALUES ($1, $2, $3)
+		`, [msgTitle, msgContent, userId])
+}
