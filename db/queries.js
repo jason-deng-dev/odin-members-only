@@ -47,3 +47,10 @@ exports.getAllMsg = async () => {
 		`)
 	return rows
 }
+
+exports.deleteMsg = async (msg_id) =>  {
+	console.log(msg_id)
+	await pool.query(`
+		DELETE FROM messages
+		WHERE id = $1`, [msg_id])
+}

@@ -8,4 +8,9 @@ indexRouter.get('/', async (req, res, send) => {
 	res.render('index', {messages});
 });
 
+indexRouter.post('/delete/:msg_id', async (req, res, send) => {
+    await db.deleteMsg(req.params.msg_id)
+    res.redirect('/')
+})
+
 module.exports = indexRouter;
