@@ -5,6 +5,7 @@ const {
 	ensureLoggedOut,
 	ensureLoggedIn,
 	ensureNotMember,
+	ensureNotAdmin
 } = require('../config/auth');
 
 authRouter.get(
@@ -36,12 +37,14 @@ authRouter.get(
 	'/join-club',
 	ensureLoggedIn,
 	ensureNotMember,
+	ensureNotAdmin,
 	authController.joinClubGet,
 );
 authRouter.post(
 	'/join-club',
 	ensureLoggedIn,
 	ensureNotMember,
+	ensureNotAdmin,
 	authController.joinClubPost,
 );
 

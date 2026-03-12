@@ -33,3 +33,11 @@ exports.ensureNotMember = (req, res, next) => {
 exports.ensureAdmin = (req, res, next) => {
      return next();
 }
+
+exports.ensureNotAdmin = (req, res, next) => {
+    if (req.user.isadmin) {
+        console.log('already a admin')
+        return res.redirect('/')
+    }
+    return next();
+}
