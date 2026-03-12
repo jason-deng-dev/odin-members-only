@@ -1,3 +1,7 @@
+
+
+## DATABASE Structure 
+
 users
 id/first_name/last_name/username/password/status
 
@@ -7,8 +11,10 @@ id/title/timestamp/content
 user_message
 user_id/message_id
 
-Membership passcode stored as MEMBER_PASSCODE in .env
+## Membership passcode: 
+MEMBER_PASSCODE = 1234
 
+## State logic
 When logged out see: 
 - sign up
 - log in
