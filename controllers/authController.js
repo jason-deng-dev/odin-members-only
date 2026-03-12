@@ -7,7 +7,6 @@ require('dotenv').config();
 const {
 	body,
 	validationResult,
-	matchedData,
 } = require('express-validator');
 
 exports.signUpGet = async (req, res, next) => {
