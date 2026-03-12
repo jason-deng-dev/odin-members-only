@@ -7,7 +7,7 @@ id/title/timestamp/content
 user_message
 user_id/message_id
 
-
+Membership passcode stored as MEMBER_PASSCODE in .env
 
 
 When logged out see: 

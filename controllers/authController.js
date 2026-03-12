@@ -1,6 +1,9 @@
 const db = require('../db/queries');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
+
+
 const {
 	body,
 	validationResult,
@@ -110,3 +113,48 @@ exports.logoutGet = (req, res, next) => {
 		res.redirect('/');
 	});
 };
+
+exports.joinClubGet = (req, res, next) => {
+	try{
+		res.render('auth/join-club-form')
+	}catch(err) {
+		next(err)
+	}	
+}
+
+const passcode = process.env.MEMBER_PASSCODE;
+
+const validatePasscode = [
+	body('passcode')
+	.custom(( value ) => {
+		if ( value !== passcode) {
+			throw new Error('Wrong passcode')
+		}
+		return true
+	})
+];
+
+
+exports.joinClubPost = [
+	validatePasscode,
+	async (req, res, next) => {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(400).render('auth/join-club-form', {
+				title: 'Enter passcode',
+				errors: errors.array(),
+			})
+		}
+		try {
+			console.log(req.user)
+			// db query to change membership to true
+
+		} catch (err) {
+			next(err)
+		}
+
+	}
+
+
+]
+	
