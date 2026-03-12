@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 // routers
 const indexRouter = require('./routes/indexRouter');
 const authRouter = require('./routes/authRouter')
+const messageRouter = require('./routes/messageRouter')
 
 // Authentication setup
 const session = require("express-session");
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/', indexRouter);
 app.use('/auth', authRouter)
+app.use('/message', messageRouter)
 
 app.use((err, req, res, next) => {
 	console.error(err);

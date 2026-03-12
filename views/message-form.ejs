@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+		<link rel="stylesheet" href="/reset.css" />
+		<link rel="stylesheet" href="/message-form.css" />
+	</head>
+	<body>
+		<%- include("partials/nav.ejs") %>
+		<div class="container">
+			<h1>Add message</h1>
+			<%- include("partials/errors.ejs") %>
+			<form action="/message/new" method="POST">
+				<div>
+					<label>
+						Message title:
+						<input
+							type="text"
+							id="msg-title"
+							name="msg-title"
+						/>
+					</label>
+				</div>
+				<div>
+					<label>
+						Message content:
+						<textarea
+							name="msg-content"
+							id="msg-content"
+						></textarea>
+					</label>
+				</div>
+				<button type="submit">Submit</button>
+			</form>
+			
+		</div>
+	</body>
+</html>
