@@ -23,3 +23,11 @@ exports.getUsersById = async (id) => {
     const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
     return rows[0];
 }
+
+exports.userToMember = async(id) => {
+	await pool.query(`
+		UPDATE users 
+		SET membership_status = true
+		WHERE id = $1
+		`, [id])
+}

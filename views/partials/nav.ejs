@@ -22,15 +22,13 @@
     <a href="/auth/log-in">Log in</a>
   <% }%>
   <% if (locals.currentUser) {%>
-    <% if (!locals.currentUser.isadmin) {%>
+    <% if (!locals.currentUser.isadmin && !locals.currentUser.membership_status) {%>
         <a href="/auth/join-club">Join the club</a>
       <% }%>
     
     <a href="">Create a message</a>
     <a href="/auth/log-out">Log out</a>
-      <% if (locals.currentUser.membership_status) {%>
-    <div>Member</div>
-    <% }%>
+
   <% }%>
 
   

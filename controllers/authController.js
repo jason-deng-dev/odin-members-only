@@ -146,9 +146,8 @@ exports.joinClubPost = [
 			})
 		}
 		try {
-			console.log(req.user)
-			// db query to change membership to true
-
+			db.userToMember(req.user.id)
+			res.redirect('/')
 		} catch (err) {
 			next(err)
 		}
